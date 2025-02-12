@@ -11,33 +11,28 @@ public class Randomly : MonoBehaviour
     static int numSphere = 100; 
     float time = 0f;
     Vector3[] initPos;
-    // Start is called before the first frame update
     void Start()
     {
         spheres = new GameObject[numSphere];
         initPos = new Vector3[numSphere];
         
-        foreach (GameObject sphere in spheres){
+        //foreach (GameObject sphere in spheres){
             // sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             // This will cause an error. Why?
             // foreach is a read only iterator that iterates dynamically classes that implement IEnumerable, each cycle in foreach will call the IEnumerable to get the next item, the item you have is a read only reference,
-        }
+        //}
 
-        // Let there be spheres..
         for (int i =0; i < numSphere; i++){
-            float r = 10f; // radius of the circle
-            // Draw primitive elements:
-            // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/GameObject.CreatePrimitive.html
-            spheres[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere); 
-            // Initial Random Position
-            initPos[i] = new Vector3(r * Random.Range(-2f, 2f), r * Random.Range(-2f, 2f), 2f);
+            float r = 1.5f; // Modified size of the cube
+            //Create cubes
+            spheres[i] = GameObject.CreatePrimitive(PrimitiveType.Cube); 
+            // Modified random positioning
+            initPos[i] = new Vector3(r * Random.Range(-30f, 30f), r * Random.Range(-30f, 30f), 30f);
             spheres[i].transform.position = initPos[i];
-
-            // Get the renderer of the spheres and assign colors.
             Renderer sphereRenderer = spheres[i].GetComponent<Renderer>();
             // hsv color space: https://en.wikipedia.org/wiki/HSL_and_HSV
-            float hue = (float)i / numSphere; // Hue cycles through 0 to 1
-            Color color = Color.HSVToRGB(hue, 1f, 1f); // Full saturation and brightness
+            float hue = (float)Random.Range(0.75f, 1f); // Modified hue cycles through 0.75 to 1
+            Color color = Color.HSVToRGB(hue, 0.8f, 1f); // Modified with lower saturation
             sphereRenderer.material.color = color;
         }
     }
