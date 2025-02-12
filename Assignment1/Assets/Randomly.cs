@@ -30,7 +30,7 @@ public class Randomly : MonoBehaviour
             // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/GameObject.CreatePrimitive.html
             spheres[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere); 
             // Initial Random Position
-            initPos[i] = new Vector3(r * Random.Range(-10f, 10f), r * Random.Range(-10f, 10f), 10f);
+            initPos[i] = new Vector3(r * Random.Range(-2f, 2f), r * Random.Range(-2f, 2f), 2f);
             spheres[i].transform.position = initPos[i];
 
             // Get the renderer of the spheres and assign colors.
