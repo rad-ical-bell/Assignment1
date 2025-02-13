@@ -1,4 +1,5 @@
 // UMD IMDM290 
+//Sofija Radovanovic
 // Instructor: Myungin Lee
 
 using System.Collections;
@@ -27,7 +28,7 @@ public class Randomly : MonoBehaviour
             //Create cubes
             spheres[i] = GameObject.CreatePrimitive(PrimitiveType.Cube); 
             // Modified random positioning
-            initPos[i] = new Vector3(r * Random.Range(-30f, 30f), r * Random.Range(-30f, 30f), 30f);
+            initPos[i] = new Vector3(r * Random.Range(-30f, 30f), r * Random.Range(-30f, 20f), 30f);
             spheres[i].transform.position = initPos[i];
             Renderer sphereRenderer = spheres[i].GetComponent<Renderer>();
             // hsv color space: https://en.wikipedia.org/wiki/HSL_and_HSV
