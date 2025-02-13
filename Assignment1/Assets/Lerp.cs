@@ -43,7 +43,12 @@ public class Lerp : MonoBehaviour
         for (int i =0; i < numSphere; i++){
             float r = 1.5f; // Modified radius of the capsules
             
-            capsules[i] = GameObject.CreatePrimitive(PrimitiveType.Capsule); 
+            if(i % 2 == 0) {
+                capsules[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere); 
+            } else {
+                capsules[i] = GameObject.CreatePrimitive(PrimitiveType.Cube); 
+            }
+
 
             // Position
             initPos[i] = startPosition[i];
@@ -68,7 +73,7 @@ public class Lerp : MonoBehaviour
             
             // lerpFraction variable defines the point between startPosition and endPosition (0~1)
             // let it oscillate over time using sin function
-            lerpFraction = Mathf.Sin(time) * .60f + 0.5f; //Modified the oscillation
+            lerpFraction = Mathf.Sin(time) * .60f + 1f; //Modified the oscillation
 
             // Lerp logic. Update position       
             t = i* 2 * Mathf.PI / numSphere;
