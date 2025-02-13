@@ -42,7 +42,7 @@ public class Randomly : MonoBehaviour
             if (cube != null)
             {
                 //The sine value oscillates between -1 and 1.
-                //Using Time.time instead of Time.deltaTime; Time.time makes code work as intended instead of it causing cubes to rapidly shake.
+                //Using Time.time instead of Time.deltaTime; Time.time makes code work as intended instead of causing the cubes to rapidly shake.
                 float scale = 1 + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount; 
                 cube.transform.localScale = new Vector3(scale, scale, scale);
             }
