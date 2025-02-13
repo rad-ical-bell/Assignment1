@@ -8,33 +8,44 @@ using UnityEngine;
 
 public class Randomly : MonoBehaviour
 {
-    GameObject[] spheres;
-    static int numSphere = 100; 
+    GameObject[] cubes;
+    static int numcube = 100; 
     float time = 0f;
     Vector3[] initPos;
+    public float pulseSpeed = 2f;
+    public float pulseAmount = 0.2f;
     void Start()
     {
-        spheres = new GameObject[numSphere];
-        initPos = new Vector3[numSphere];
-        
-        //foreach (GameObject sphere in spheres){
-            // sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            // This will cause an error. Why?
-            // foreach is a read only iterator that iterates dynamically classes that implement IEnumerable, each cycle in foreach will call the IEnumerable to get the next item, the item you have is a read only reference,
-        //}
+        cubes = new GameObject[numcube];
+        initPos = new Vector3[numcube];
 
-        for (int i =0; i < numSphere; i++){
+        for (int i =0; i < numcube; i++){
             float r = 1.5f; // Modified size of the cube
             //Create cubes
-            spheres[i] = GameObject.CreatePrimitive(PrimitiveType.Cube); 
+            cubes[i] = GameObject.CreatePrimitive(PrimitiveType.Cube); 
             // Modified random positioning
             initPos[i] = new Vector3(r * Random.Range(-30f, 30f), r * Random.Range(-30f, 20f), 30f);
-            spheres[i].transform.position = initPos[i];
-            Renderer sphereRenderer = spheres[i].GetComponent<Renderer>();
+            cubes[i].transform.position = initPos[i];
+            Renderer cubeRenderer = cubes[i].GetComponent<Renderer>();
             // hsv color space: https://en.wikipedia.org/wiki/HSL_and_HSV
             float hue = (float)Random.Range(0.75f, 1f); // Modified hue cycles through 0.75 to 1
             Color color = Color.HSVToRGB(hue, 0.8f, 1f); // Modified with lower saturation
-            sphereRenderer.material.color = color;
+            cubeRenderer.material.color = color;
+        }
+    }
+
+    void Update()
+    {
+        foreach (GameObject cube in cubes)
+        {
+            //Checking that the cube exists
+            if (cube != null)
+            {
+                //The sine value oscillates between -1 and 1.
+                //Using Time.time instead of Time.deltaTime; Time.time makes code work as intended instead of it causing cubes to rapidly shake.
+                float scale = 1 + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount; 
+                cube.transform.localScale = new Vector3(scale, scale, scale);
+            }
         }
     }
 }
