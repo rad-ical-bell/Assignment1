@@ -1,5 +1,5 @@
 // UMD IMDM290 
-//Sofija Radovanovic
+// Sofija Radovanovic
 // Instructor: Myungin Lee
     // [a <-----------> b]
     // Lerp : Linearly interpolates between two points. 
@@ -19,11 +19,11 @@ public class Lerp : MonoBehaviour
     Vector3[] startPosition, endPosition;
     float lerpFraction; // Lerp point between 0~1
     float t;
-    float random; // random rotation
+
 
     void Start()
     {
-        // Assign proper types and sizes to the variables.
+
         heartObjects = new GameObject[numSphere];
         initPos = new Vector3[numSphere]; // Start positions
         startPosition = new Vector3[numSphere]; 
@@ -57,12 +57,12 @@ public class Lerp : MonoBehaviour
             initPos[i] = startPosition[i];
             heartObjects[i].transform.position = initPos[i];
             //Created random rotation for each heartObjects (only works for cubes)
-            random = (float)Random.Range(0,360);
+            float random = (float)Random.Range(0,360);
             heartObjects[i].transform.rotation = Quaternion.Euler(0, 0, random);
 
             // Color
             Renderer sphereRenderer = heartObjects[i].GetComponent<Renderer>();
-            float hue = (float)i / numSphere; // Hue cycles through 0 to 1
+            float hue = (float)i / numSphere; 
             Color color = Color.HSVToRGB(hue, 1f, 1f); 
             sphereRenderer.material.color = color;
         }
@@ -74,18 +74,16 @@ public class Lerp : MonoBehaviour
         time += Time.deltaTime; 
         for (int i =0; i < numSphere; i++){
             
-            // lerpFraction variable defines the point between startPosition and endPosition (0~1)
-            // let it oscillate over time using sin function
             lerpFraction = Mathf.Sin(time) * .60f + 0.9f; //Modified the oscillation
 
-            // Lerp logic. Update position       
+           
             t = i* 2 * Mathf.PI / numSphere;
             heartObjects[i].transform.position = Vector3.Lerp(startPosition[i], endPosition[i], lerpFraction);
 
             // Color Update over time
             Renderer sphereRenderer = heartObjects[i].GetComponent<Renderer>();
-            float hue = (float)i / numSphere; // Hue cycles through 0 to 1
-            Color color = Color.HSVToRGB(Mathf.Abs(hue * Mathf.Sin(time)), 0.75f, 2f + Mathf.Cos(time)); // Full saturation and brightness
+            float hue = (float)i / numSphere; 
+            Color color = Color.HSVToRGB(Mathf.Abs(hue * Mathf.Sin(time)), 0.75f, 2f + Mathf.Cos(time)); 
             sphereRenderer.material.color = color;
         }
     }

@@ -1,5 +1,5 @@
 // UMD IMDM290 
-//Sofija Radovanovic
+// Sofija Radovanovic
 // Instructor: Myungin Lee
 
 using System.Collections;
